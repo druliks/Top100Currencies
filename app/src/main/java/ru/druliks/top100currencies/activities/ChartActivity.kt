@@ -42,7 +42,7 @@ class ChartActivity : AppCompatActivity(), OnChartValueSelectedListener,
         val ath = intent?.getFloatExtra("ath", 0.0f)
         val athChangePercentage = intent?.getFloatExtra("athChangePercentage", 0.0f)
         val circulatingSupply = intent?.getDoubleExtra("circulatingSupply", 0.0)
-        val totalSupply = intent?.getLongExtra("totalSupply", 0)
+        val totalSupply = intent?.getDoubleExtra("totalSupply", 0.0)
         val image = intent.getStringExtra("image")
         Glide.with(this).load(image).into(ivCurrencyDetailIcon)
         supportActionBar?.title = name
@@ -54,7 +54,7 @@ class ChartActivity : AppCompatActivity(), OnChartValueSelectedListener,
         tvAthChange.text = df.format(athChangePercentage)
         tvCirculatingSupply.text = df.format(circulatingSupply)
         tvTotalSupply.text = totalSupply.toString()
-        presenter.makeChart(intent.getStringExtra("id"))
+        presenter.makeChart(intent.getStringExtra("id")!!)
         latestChart.initChart(chartCurrency)
     }
     override fun onNothingSelected() {
